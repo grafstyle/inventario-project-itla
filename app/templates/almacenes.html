@@ -1,53 +1,46 @@
 <!DOCTYPE html>
 <html lang="es">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Productos - Proyecto Inventario</title>
+    <title>Almacenes - Proyecto Inventario</title>
     <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
 </head>
-
 <body>
-
     <header class="header">
         <div class="header-content">
             <h1>Proyecto Inventario</h1>
             <a href="/" class="back-link">← Volver al Hub</a>
         </div>
     </header>
-
     <main class="container">
         <div class="table-header">
-            <h2>Listado de Productos</h2>
-            <a href="/productos/nuevo" class="btn btn-create">+ Nuevo Producto</a>
+            <h2>Listado de Almacenes</h2>
+            <a href="/almacenes/nuevo" class="btn btn-create">+ Nuevo Almacén</a>
         </div>
-
         <table class="data-table">
             <thead>
                 <tr>
                     <th>ID</th>
                     <th>Nombre</th>
-                    <th>Descripción</th>
-                    <th>Precio</th>
-                    <th>Costo</th>
+                    <th>País</th>
+                    <th>Ciudad</th>
                     <th>Acciones</th>
                 </tr>
             </thead>
             <tbody>
-                {% for p in productos %}
+                {% for a in almacenes %}
                 <tr>
-                    <td>{{ p.idProduct }}</td>
-                    <td>{{ p.Name }}</td>
-                    <td>{{ p.Description }}</td>
-                    <td>${{ p.Price }}</td>
-                    <td>${{ p.Cost }}</td>
+                    <td>{{ a.idWarehouse }}</td>
+                    <td>{{ a.Name }}</td>
+                    <td>{{ a.Country }}</td>
+                    <td>{{ a.City }}</td>
                     <td>
                         <div class="actions">
-                            <a href="/productos/editar/{{ p.idProduct }}" class="btn btn-edit">Editar</a>
-                            <form action="/productos/eliminar/{{ p.idProduct }}" method="POST" style="display:inline;">
+                            <a href="/almacenes/editar/{{ a.idWarehouse }}" class="btn btn-edit">Editar</a>
+                            <form action="/almacenes/eliminar/{{ a.idWarehouse }}" method="POST" style="display:inline;">
                                 <button type="submit" class="btn btn-delete"
-                                    onclick="return confirm('¿Eliminar este producto?')">Borrar</button>
+                                    onclick="return confirm('¿Eliminar este almacén?')">Borrar</button>
                             </form>
                         </div>
                     </td>
@@ -56,9 +49,5 @@
             </tbody>
         </table>
     </main>
-
 </body>
-
 </html>
-
-

@@ -5,7 +5,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Proyecto Inventario - Hub</title>
-    <link rel="stylesheet" href="../static/css/style.css" </head>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
 
 <body>
 
@@ -14,16 +15,19 @@
     </header>
 
     <main class="hub-container">
-        <a <p>PRODUCTOS</p> class="hub-card">
-            <span>Productos</span>
+        <a href="/productos" class="hub-card">
+            <p>PRODUCTOS</p>
+            <span>Gestionar productos</span>
         </a>
 
-        <a <p>ALMACENES</p> class="hub-card">
-            <span>Almacenes</span>
+        <a href="/almacenes" class="hub-card">
+            <p>ALMACENES</p>
+            <span>Gestionar almacenes</span>
         </a>
 
-        <a <p>INVENTARIO</p> class="hub-card">
-            <span>Inventario</span>
+        <a href="/inventario" class="hub-card">
+            <p>INVENTARIO</p>
+            <span>Ver inventario</span>
         </a>
     </main>
 
