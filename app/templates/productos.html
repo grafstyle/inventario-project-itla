@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Productos - Proyecto Inventario</title>
+    <link rel="stylesheet" href="../static/css/style.css">
+</head>
+
+<body>
+
+    <header class="header">
+        <div class="header-content">
+            <h1>Proyecto Inventario</h1>
+            <a href="/" class="back-link">← Volver al Hub</a>
+        </div>
+    </header>
+
+    <main class="container">
+        <div class="table-header">
+            <h2>Listado de Productos</h2>
+            <a href="productos.html" btn btn-create">+ Nuevo Producto</a>
+        </div>
+
+        <table class="data-table">
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Nombre</th>
+                    <th>Categoría</th>
+                    <th>Precio</th>
+                    <th>Stock</th>
+                    <th>Acciones</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for producto in productos %}
+                <tr>
+                    <td>{{ producto.id }}</td>
+                    <td>{{ producto.nombre }}</td>
+                    <td>{{ producto.categoria }}</td>
+                    <td>${{ producto.precio }}</td>
+                    <td>{{ producto.stock }}</td>
+                    <td>
+                        <div class="actions">
+                            <a <p>href="{{ url_for('editar_producto', id=producto.id) }}"</p> class="btn
+                                btn-edit">Editar</a>
+                            <form action="{{ url_for('eliminar_producto', id=producto.id) }}" method="POST"
+                                style="display:inline;">
+                                <button type="submit" class="btn btn-delete"
+                                    onclick="return confirm('¿Eliminar este producto?')">Borrar</button>
+                            </form>
+                        </div>
+                    </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </main>
+
+</body>
+
+</html>
