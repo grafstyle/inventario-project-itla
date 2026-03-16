@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Inventario - Proyecto Inventario</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+    <header class="header">
+        <div class="header-content">
+            <h1>Proyecto Inventario</h1>
+            <a href="/" class="back-link">← Volver al Hub</a>
+        </div>
+    </header>
+    <main class="container">
+        <div class="table-header">
+            <h2>Inventario</h2>
+            <a href="/inventario/nuevo" class="btn btn-create">+ Asignar Stock</a>
+        </div>
+        <table class="data-table">
+            <thead>
+                <tr>
+                    <th>Producto</th>
+                    <th>Almacén</th>
+                    <th>País</th>
+                    <th>Ciudad</th>
+                    <th>Stock</th>
+                    <th>Precio</th>
+                    <th>Acciones</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for i in inventario %}
+                <tr>
+                    <td>{{ i.ProductName }}</td>
+                    <td>{{ i.WarehouseName }}</td>
+                    <td>{{ i.Country }}</td>
+                    <td>{{ i.City }}</td>
+                    <td>{{ i.Stock }}</td>
+                    <td>${{ i.Price }}</td>
+                    <td>
+                        <div class="actions">
+                            <a href="/inventario/editar/{{ i.idProduct }}/{{ i.idWarehouse }}" 
+                               class="btn btn-edit">Editar</a>
+                            <form action="/inventario/eliminar/{{ i.idProduct }}/{{ i.idWarehouse }}" 
+                                  method="POST" style="display:inline;">
+                                <button type="submit" class="btn btn-delete"
+                                    onclick="return confirm('¿Eliminar este registro?')">Borrar</button>
+                            </form>
+                        </div>
+                    </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </main>
+</body>
+</html>

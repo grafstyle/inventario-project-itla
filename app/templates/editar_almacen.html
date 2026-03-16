@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Editar Almacén</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+    <header class="header">
+        <div class="header-content">
+            <h1>Proyecto Inventario</h1>
+            <a href="/almacenes" class="back-link">← Volver a Almacenes</a>
+        </div>
+    </header>
+    <main class="container">
+        <h2>Editar Almacén</h2>
+        {% if error %}
+        <div class="alert alert-error">{{ error }}</div>
+        {% endif %}
+        <form action="/almacenes/editar/{{ almacen.idWarehouse }}" method="POST" class="form">
+            <div class="form-group">
+                <label>Nombre *</label>
+                <input type="text" name="name" value="{{ almacen.Name }}" required>
+            </div>
+            <div class="form-group">
+                <label>País *</label>
+                <input type="text" name="country" value="{{ almacen.Country }}" required>
+            </div>
+            <div class="form-group">
+                <label>Ciudad *</label>
+                <input type="text" name="city" value="{{ almacen.City }}" required>
+            </div>
+            <div class="form-actions">
+                <a href="/almacenes" class="btn btn-cancel">Cancelar</a>
+                <button type="submit" class="btn btn-create">Guardar</button>
+            </div>
+        </form>
+    </main>
+</body>
+</html>
