@@ -1,0 +1,42 @@
+{% extends 'base.html' %}
+
+{% block title %}Hub - Inventario Pro{% endblock %}
+
+{% block content %}
+<div class="text-center mb-5 fade-in">
+    <h1 class="fw-bold text-secondary mb-2">Control Panel</h1>
+    <p class="text-muted">Select a module to manage your resources</p>
+</div>
+
+<div class="row g-4 justify-content-center fade-in">
+    <div class="col-md-4">
+        <a href="/productos" class="hub-card-link">
+            <div class="hub-card">
+                <i class="fa-solid fa-box-open hub-card-icon"></i>
+                <h3 class="hub-card-title">Productos</h3>
+                <p class="hub-card-text">Add, edit, or remove products from the catalog.</p>
+            </div>
+        </a>
+    </div>
+
+    <div class="col-md-4">
+        <a href="/almacenes" class="hub-card-link">
+            <div class="hub-card">
+                <i class="fa-solid fa-warehouse hub-card-icon text-success"></i>
+                <h3 class="hub-card-title">Almacenes</h3>
+                <p class="hub-card-text">Manage warehouse locations and details.</p>
+            </div>
+        </a>
+    </div>
+
+    <div class="col-md-4">
+        <a href="/inventario" class="hub-card-link">
+            <div class="hub-card">
+                <i class="fa-solid fa-clipboard-list hub-card-icon text-warning"></i>
+                <h3 class="hub-card-title">Inventario</h3>
+                <p class="hub-card-text">Track and allocate stock across warehouses.</p>
+            </div>
+        </a>
+    </div>
+</div>
+{% endblock %}

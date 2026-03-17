@@ -1,0 +1,48 @@
+{% extends 'base.html' %}
+
+{% block title %}Inicio - Inventario Pro{% endblock %}
+
+{% block content %}
+<div class="row justify-content-center">
+    <div class="col-lg-10">
+        <div class="hero-section shadow-sm">
+            <h1 class="hero-title">Welcome to Inventario Pro</h1>
+            <p class="hero-subtitle">Manage your products, warehouses, and stock efficiently with our beautiful and
+                modern interface.</p>
+            <div class="d-flex justify-content-center gap-3 mt-4">
+                <i class="fa-solid fa-rocket me-2"></i> Get Started
+                </a>
+                <a href="/productos" class="btn btn-light btn-lg px-4 rounded-pill">
+                    View Products
+                </a>
+            </div>
+        </div>
+
+        <div class="row g-4 mt-2">
+            <div class="col-md-4">
+                <div class="premium-card p-4 text-center h-100">
+                    <div class="fs-1 text-primary mb-3"><i class="fa-solid fa-bolt"></i></div>
+                    <h3 class="h5 fw-bold">Lightning Fast</h3>
+                    <p class="text-muted small mb-0">Experience instant navigation and seamless transitions across the
+                        platform.</p>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="premium-card p-4 text-center h-100">
+                    <div class="fs-1 text-primary mb-3"><i class="fa-solid fa-shield-halved"></i></div>
+                    <h3 class="h5 fw-bold">Secure Data</h3>
+                    <p class="text-muted small mb-0">Your inventory data is safely processed and managed locally.</p>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="premium-card p-4 text-center h-100">
+                    <div class="fs-1 text-primary mb-3"><i class="fa-solid fa-wand-magic-sparkles"></i></div>
+                    <h3 class="h5 fw-bold">Modern Design</h3>
+                    <p class="text-muted small mb-0">Built with Bootstrap 5 and premium aesthetics for the best user
+                        experience.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

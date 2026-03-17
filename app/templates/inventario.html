@@ -1,0 +1,79 @@
+{% extends 'base.html' %}
+
+{% block title %}Inventario - Inventario Pro{% endblock %}
+
+{% block content %}
+<div class="d-flex justify-content-between align-items-center mb-4 fade-in">
+    <div>
+        <h2 class="h3 fw-bold text-secondary mb-1">Estado del Inventario</h2>
+        <p class="text-muted small mb-0">Track product stock across all locations</p>
+    </div>
+    <a href="/inventario/nuevo" class="btn btn-primary shadow-sm">
+        <i class="fa-solid fa-truck-ramp-box me-1"></i> Asignar Stock
+    </a>
+</div>
+
+<div class="table-container fade-in" style="animation-delay: 0.1s;">
+    <div class="table-responsive">
+        <table class="table table-hover align-middle">
+            <thead>
+                <tr>
+                    <th class="ps-4">Producto</th>
+                    <th>Almacén / Ubicación</th>
+                    <th class="text-center">Stock Disponible</th>
+                    <th class="text-end">Precio Unitario</th>
+                    <th class="text-end pe-4">Acciones</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for i in inventario %}
+                <tr>
+                    <td class="ps-4 fw-bold text-primary">{{ i.ProductName }}</td>
+                    <td>
+                        <div class="d-flex flex-column">
+                            <span class="fw-medium"><i class="fa-solid fa-warehouse text-muted small me-1"></i> {{ i.WarehouseName }}</span>
+                            <small class="text-muted"><i class="fa-solid fa-location-dot small me-1"></i> {{ i.City }}, {{ i.Country }}</small>
+                        </div>
+                    </td>
+                    <td class="text-center">
+                        <span class="badge {% if i.Stock > 10 %}bg-success{% elif i.Stock > 0 %}bg-warning{% else %}bg-danger{% endif %} rounded-pill px-3 py-2 fs-6">
+                            {{ i.Stock }} und.
+                        </span>
+                    </td>
+                    <td class="text-end fw-medium text-muted">${{ i.Price }}</td>
+                    <td class="text-end pe-4">
+                        <div class="actions-cell justify-content-end">
+                            <a href="/inventario/editar/{{ i.idProduct }}/{{ i.idWarehouse }}" class="btn btn-sm btn-light text-primary" data-bs-toggle="tooltip" title="Editar Stock">
+                                <i class="fa-solid fa-pen"></i>
+                            </a>
+                            <form action="/inventario/eliminar/{{ i.idProduct }}/{{ i.idWarehouse }}" method="POST" class="d-inline">
+                                <button type="submit" class="btn btn-sm btn-light text-danger" data-bs-toggle="tooltip" title="Desasignar"
+                                    onclick="return confirm('¿Eliminar esta asignación de inventario permanentemente?')">
+                                    <i class="fa-solid fa-trash"></i>
+                                </button>
+                            </form>
+                        </div>
+                    </td>
+                </tr>
+                {% else %}
+                <tr>
+                    <td colspan="5" class="text-center py-5 text-muted">
+                        <i class="fa-solid fa-boxes-stacked fs-2 mb-3 text-light"></i>
+                        <p class="mb-0">El inventario está vacío. Asigna stock a los almacenes.</p>
+                    </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+</div>
+
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+        var tooltipTriggerList = [].slice.call(document.querySelectorAll('[data-bs-toggle="tooltip"]'))
+        var tooltipList = tooltipTriggerList.map(function (tooltipTriggerEl) {
+            return new bootstrap.Tooltip(tooltipTriggerEl)
+        })
+    });
+</script>
+{% endblock %}
