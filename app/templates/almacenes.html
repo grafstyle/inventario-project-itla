@@ -1,53 +1,81 @@
-<!DOCTYPE html>
-<html lang="es">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Almacenes - Proyecto Inventario</title>
-    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
-</head>
-<body>
-    <header class="header">
-        <div class="header-content">
-            <h1>Proyecto Inventario</h1>
-            <a href="/" class="back-link">← Volver al Hub</a>
-        </div>
-    </header>
-    <main class="container">
-        <div class="table-header">
-            <h2>Listado de Almacenes</h2>
-            <a href="/almacenes/nuevo" class="btn btn-create">+ Nuevo Almacén</a>
-        </div>
-        <table class="data-table">
+{% extends 'base.html' %}
+
+{% block title %}Almacenes - Inventario Pro{% endblock %}
+
+{% block content %}
+<div class="d-flex justify-content-between align-items-center mb-4 fade-in">
+    <div>
+        <h2 class="h3 fw-bold text-secondary mb-1">Listado de Almacenes</h2>
+        <p class="text-muted small mb-0">Manage your warehouse locations</p>
+    </div>
+    <a href="/almacenes/nuevo" class="btn btn-primary shadow-sm">
+        <i class="fa-solid fa-plus me-1"></i> Nuevo Almacén
+    </a>
+</div>
+
+<div class="table-container fade-in" style="animation-delay: 0.1s;">
+    <div class="table-responsive">
+        <table class="table table-hover align-middle">
             <thead>
                 <tr>
-                    <th>ID</th>
+                    <th class="ps-4">ID</th>
                     <th>Nombre</th>
                     <th>País</th>
                     <th>Ciudad</th>
-                    <th>Acciones</th>
+                    <th class="text-end pe-4">Acciones</th>
                 </tr>
             </thead>
             <tbody>
                 {% for a in almacenes %}
                 <tr>
-                    <td>{{ a.idWarehouse }}</td>
-                    <td>{{ a.Name }}</td>
-                    <td>{{ a.Country }}</td>
-                    <td>{{ a.City }}</td>
+                    <td class="ps-4 fw-medium text-muted">#{{ a.idWarehouse }}</td>
+                    <td class="fw-bold">
+                        <i class="fa-solid fa-building text-primary opacity-50 me-2"></i>
+                        {{ a.Name }}
+                    </td>
                     <td>
-                        <div class="actions">
-                            <a href="/almacenes/editar/{{ a.idWarehouse }}" class="btn btn-edit">Editar</a>
-                            <form action="/almacenes/eliminar/{{ a.idWarehouse }}" method="POST" style="display:inline;">
-                                <button type="submit" class="btn btn-delete"
-                                    onclick="return confirm('¿Eliminar este almacén?')">Borrar</button>
+                        <span class="d-inline-flex align-items-center gap-1">
+                            <i class="fa-solid fa-globe text-muted small"></i> {{ a.Country }}
+                        </span>
+                    </td>
+                    <td>
+                        <span class="d-inline-flex align-items-center gap-1">
+                            <i class="fa-solid fa-city text-muted small"></i> {{ a.City }}
+                        </span>
+                    </td>
+                    <td class="text-end pe-4">
+                        <div class="actions-cell justify-content-end">
+                            <a href="/almacenes/editar/{{ a.idWarehouse }}" class="btn btn-sm btn-light text-primary" data-bs-toggle="tooltip" title="Editar">
+                                <i class="fa-solid fa-pen"></i>
+                            </a>
+                            <form action="/almacenes/eliminar/{{ a.idWarehouse }}" method="POST" class="d-inline">
+                                <button type="submit" class="btn btn-sm btn-light text-danger" data-bs-toggle="tooltip" title="Eliminar"
+                                    onclick="return confirm('¿Eliminar este almacén de forma permanente?')">
+                                    <i class="fa-solid fa-trash"></i>
+                                </button>
                             </form>
                         </div>
+                    </td>
+                </tr>
+                {% else %}
+                <tr>
+                    <td colspan="5" class="text-center py-5 text-muted">
+                        <i class="fa-solid fa-warehouse fs-2 mb-3 text-light"></i>
+                        <p class="mb-0">No hay almacenes registrados en el sistema.</p>
                     </td>
                 </tr>
                 {% endfor %}
             </tbody>
         </table>
-    </main>
-</body>
-</html>
+    </div>
+</div>
+
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+        var tooltipTriggerList = [].slice.call(document.querySelectorAll('[data-bs-toggle="tooltip"]'))
+        var tooltipList = tooltipTriggerList.map(function (tooltipTriggerEl) {
+            return new bootstrap.Tooltip(tooltipTriggerEl)
+        })
+    });
+</script>
+{% endblock %}

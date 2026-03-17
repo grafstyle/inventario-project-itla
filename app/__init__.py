@@ -10,43 +10,14 @@ def create_app(config_class=Config):
     from app.routes import bp as main_bp
     app.register_blueprint(main_bp)
 
-    return app
+    # Registrar Blueprints de módulos
+    from app.modules.productos import bp as productos_bp
+    app.register_blueprint(productos_bp)
 
+    from app.modules.almacenes import bp as almacenes_bp
+    app.register_blueprint(almacenes_bp)
 
-
-
-
-""""
-from flask import Flask,render_template
-from config import Config
-
-app = Flask(__name__)
-
-@app.route('/')
-def hub():
-    return render_template('hub.html')
-
-@app.route('/productos')
-def productos():
-    return "Página de Productos"
-
-@app.route('/almacenes')
-def almacenes():
-    return "Página de Almacenes"
-
-@app.route('/inventario')
-def inventario():
-    return "Página de Inventario"
-
-if __name__ == '__main__':
-    app.run(debug=True)
-
-def create_app(config_class=Config):
-    app = Flask(__name__)
-    app.config.from_object(config_class)
-
-    from app.routes import bp as main_bp
-    app.register_blueprint(main_bp)
+    from app.modules.inventario import bp as inventario_bp
+    app.register_blueprint(inventario_bp)
 
     return app
-"""

@@ -1,36 +1,42 @@
-<!DOCTYPE html>
-<html lang="es">
+{% extends 'base.html' %}
 
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Proyecto Inventario - Hub</title>
-    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
-</head>
+{% block title %}Hub - Inventario Pro{% endblock %}
 
-<body>
+{% block content %}
+<div class="text-center mb-5 fade-in">
+    <h1 class="fw-bold text-secondary mb-2">Control Panel</h1>
+    <p class="text-muted">Select a module to manage your resources</p>
+</div>
 
-    <header class="header">
-        <h1>Proyecto Inventario</h1>
-    </header>
-
-    <main class="hub-container">
-        <a href="/productos" class="hub-card">
-            <p>PRODUCTOS</p>
-            <span>Gestionar productos</span>
+<div class="row g-4 justify-content-center fade-in">
+    <div class="col-md-4">
+        <a href="/productos" class="hub-card-link">
+            <div class="hub-card">
+                <i class="fa-solid fa-box-open hub-card-icon"></i>
+                <h3 class="hub-card-title">Productos</h3>
+                <p class="hub-card-text">Add, edit, or remove products from the catalog.</p>
+            </div>
         </a>
+    </div>
 
-        <a href="/almacenes" class="hub-card">
-            <p>ALMACENES</p>
-            <span>Gestionar almacenes</span>
+    <div class="col-md-4">
+        <a href="/almacenes" class="hub-card-link">
+            <div class="hub-card">
+                <i class="fa-solid fa-warehouse hub-card-icon text-success"></i>
+                <h3 class="hub-card-title">Almacenes</h3>
+                <p class="hub-card-text">Manage warehouse locations and details.</p>
+            </div>
         </a>
+    </div>
 
-        <a href="/inventario" class="hub-card">
-            <p>INVENTARIO</p>
-            <span>Ver inventario</span>
+    <div class="col-md-4">
+        <a href="/inventario" class="hub-card-link">
+            <div class="hub-card">
+                <i class="fa-solid fa-clipboard-list hub-card-icon text-warning"></i>
+                <h3 class="hub-card-title">Inventario</h3>
+                <p class="hub-card-text">Track and allocate stock across warehouses.</p>
+            </div>
         </a>
-    </main>
-
-</body>
-
-</html>
+    </div>
+</div>
+{% endblock %}
