@@ -26,25 +26,25 @@
                         <i class="fa-solid fa-circle-info fs-4 text-primary me-3"></i>
                         <div>
                             <strong>Modificando stock para:</strong>
-                            <p class="mb-0 small">Producto ID {{ idProduct }} en Almacén {{
-                                idWarehouse
+                            <p class="mb-0 small">Producto ID {{ id_producto }} en Almacén {{
+                                id_almacen
                                 }}</p>
                         </div>
                     </div>
                 </div>
 
                 <form
-                    action="{{ url_for('inventario.editar_inventario', idProduct=idProduct, idWarehouse=idWarehouse) }}"
+                    action="{{ url_for('inventario.editar_inventario', id_producto=id_producto, id_almacen=id_almacen) }}"
                     method="POST">
 
                     <div class="mb-4">
-                        <label class="form-label" for="stock">Cantidad Actual (Stock) <span
+                        <label class="form-label" for="cantidad">Cantidad Actual (Stock) <span
                                 class="text-danger">*</span></label>
                         <div class="input-group">
                             <span class="input-group-text bg-light text-muted border-end-0"><i
                                     class="fa-solid fa-cubes"></i></span>
-                            <input type="number" class="form-control border-start-0 ps-0 form-control-lg" id="stock"
-                                name="stock" value="{{ Stock }}" min="0" required autofocus>
+                            <input type="number" class="form-control border-start-0 ps-0 form-control-lg" id="cantidad"
+                                name="cantidad" value="{{ cantidad }}" min="0" required autofocus>
                         </div>
                         <div class="form-text text-muted mt-2"><i class="fa-solid fa-arrow-trend-up me-1"></i> Ajusta el
                             nivel de stock en este almacén.</div>
