@@ -1,6 +1,3 @@
-# config_bd.py
-# Este archivo se encarga de conectar con la base de datos SQLite.
-
 import sqlite3
 import os
 

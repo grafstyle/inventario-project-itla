@@ -1,7 +1,3 @@
-# controlador_inventario.py
-# Maneja las rutas web relacionadas con el inventario.
-# Recibe peticiones del usuario, las procesa con el servicio y devuelve la respuesta.
-
 from flask import Blueprint, render_template, request, redirect, url_for
 from app.services import servicio_inventario as servicio
 from app.services import servicio_producto

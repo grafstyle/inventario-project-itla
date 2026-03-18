@@ -1,6 +1,3 @@
-# repositorio_inventario.py
-# Se comunica directamente con la base de datos para operaciones de Inventario (CRUD).
-
 import sqlite3
 from app.repositories.config_bd import obtener_conexion
 from app.modelos import Inventario

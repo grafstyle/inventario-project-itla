@@ -1,7 +1,3 @@
-# controlador_producto.py
-# Maneja las rutas web relacionadas con productos.
-# Recibe peticiones del usuario, las procesa con el servicio y devuelve la respuesta.
-
 from flask import Blueprint, render_template, request, redirect, url_for
 from app.services import servicio_producto as servicio
 

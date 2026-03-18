@@ -1,7 +1,3 @@
-# modelos.py
-# Define las clases que representan los datos de la aplicacion.
-# Cada clase es como una "plantilla" para guardar informacion.
-
 class Producto:
     def __init__(self, id_producto, nombre, descripcion, precio, costo):
         self.id_producto = id_producto

@@ -1,7 +1,3 @@
-# servicio_almacen.py
-# Esta capa valida los datos antes de guardarlos en la base de datos.
-# Si los datos son correctos, llama al repositorio para hacer el trabajo real.
-
 from app.repositories import repositorio_almacen
 from app.modelos import Almacen
 

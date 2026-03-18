@@ -1,6 +1,3 @@
-# repositorio_producto.py
-# Se comunica directamente con la base de datos para operaciones de Producto (CRUD).
-
 from app.repositories.config_bd import obtener_conexion
 from app.modelos import Producto
 
