@@ -42,7 +42,7 @@ def editar_almacen(id):
         else:
             return render_template('editar_almacen.html', almacen=almacen, error=msg)
 
-    return render_template('editar_almacen.html', almacen=almacen)
+    return render_template('editar_almacen.html', a=almacen)
 
 @bp.route('/eliminar/<int:id>', methods=['POST'])
 def eliminar_almacen(id):

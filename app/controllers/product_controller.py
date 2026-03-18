@@ -44,7 +44,7 @@ def editar_producto(id):
         else:
             return render_template('editar_producto.html', producto=producto, error=msg)
 
-    return render_template('editar_producto.html', producto=producto)
+    return render_template('editar_producto.html', p=producto)
 
 
 @bp.route('/eliminar/<int:id>', methods=['POST'])
