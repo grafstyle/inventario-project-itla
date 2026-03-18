@@ -1,0 +1,54 @@
+# --- Python ---
+__pycache__/
+*.py[cod]
+*$py.class
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+
+# --- Entornos Virtuales ---
+# Es mejor que cada desarrollador cree el suyo
+venv/
+.venv/
+env/
+ENV/
+env.bak/
+venv.bak/
+
+# --- Variables de Entorno (CRÍTICO) ---
+# Nunca subas tus llaves secretas o contraseñas
+.env
+.flaskenv
+*.env
+! .env.example  # Permitimos un archivo de ejemplo sin datos reales
+
+# --- Flask / Instancia ---
+# Archivos específicos de la instancia que no deben ser compartidos
+instance/
+.webassets-cache
+
+# --- Bases de Datos ---
+# Si usas SQLite para desarrollo
+*.sqlite3
+*.db
+
+# --- Distribución / Empaquetado ---
+dist/
+build/
+*.egg-info/
+nosetests.xml
+coverage.xml
+htmlcov/
+.tox/
+
+# --- IDEs y Editores ---
+.vscode/
+.idea/
+*.swp
+*.swo
+.DS_Store (Mac)
+Thumbs.db (Windows)
+
+# --- Logs ---
+*.log
+logs/
