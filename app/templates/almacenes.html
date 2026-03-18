@@ -28,27 +28,27 @@
             <tbody>
                 {% for a in almacenes %}
                 <tr>
-                    <td class="ps-4 fw-medium text-muted">#{{ a.idWarehouse }}</td>
+                    <td class="ps-4 fw-medium text-muted">#{{ a.id_almacen }}</td>
                     <td class="fw-bold">
                         <i class="fa-solid fa-building text-primary opacity-50 me-2"></i>
-                        {{ a.Name }}
+                        {{ a.nombre }}
                     </td>
                     <td>
                         <span class="d-inline-flex align-items-center gap-1">
-                            <i class="fa-solid fa-globe text-muted small"></i> {{ a.Country }}
+                            <i class="fa-solid fa-globe text-muted small"></i> {{ a.pais }}
                         </span>
                     </td>
                     <td>
                         <span class="d-inline-flex align-items-center gap-1">
-                            <i class="fa-solid fa-city text-muted small"></i> {{ a.City }}
+                            <i class="fa-solid fa-city text-muted small"></i> {{ a.ciudad }}
                         </span>
                     </td>
                     <td class="text-end pe-4">
                         <div class="actions-cell justify-content-end">
-                            <a href="/almacenes/editar/{{ a.idWarehouse }}" class="btn btn-sm btn-light text-primary" data-bs-toggle="tooltip" title="Editar">
+                            <a href="/almacenes/editar/{{ a.id_almacen }}" class="btn btn-sm btn-light text-primary" data-bs-toggle="tooltip" title="Editar">
                                 <i class="fa-solid fa-pen"></i>
                             </a>
-                            <form action="/almacenes/eliminar/{{ a.idWarehouse }}" method="POST" class="d-inline">
+                            <form action="/almacenes/eliminar/{{ a.id_almacen }}" method="POST" class="d-inline">
                                 <button type="submit" class="btn btn-sm btn-light text-danger" data-bs-toggle="tooltip" title="Eliminar"
                                     onclick="return confirm('¿Eliminar este almacén de forma permanente?')">
                                     <i class="fa-solid fa-trash"></i>

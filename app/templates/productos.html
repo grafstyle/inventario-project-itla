@@ -29,17 +29,17 @@
             <tbody>
                 {% for p in productos %}
                 <tr>
-                    <td class="ps-4 fw-medium text-muted">#{{ p.idProduct }}</td>
-                    <td class="fw-bold">{{ p.Name }}</td>
-                    <td class="text-muted"><small>{{ p.Description }}</small></td>
-                    <td><span class="badge bg-success bg-opacity-10 text-success border border-success border-opacity-25 px-2 py-1">${{ p.Price }}</span></td>
-                    <td><span class="badge bg-secondary bg-opacity-10 text-secondary border border-secondary border-opacity-25 px-2 py-1">${{ p.Cost }}</span></td>
+                    <td class="ps-4 fw-medium text-muted">#{{ p.id_producto }}</td>
+                    <td class="fw-bold">{{ p.nombre }}</td>
+                    <td class="text-muted"><small>{{ p.descripcion }}</small></td>
+                    <td><span class="badge bg-success bg-opacity-10 text-success border border-success border-opacity-25 px-2 py-1">${{ p.precio }}</span></td>
+                    <td><span class="badge bg-secondary bg-opacity-10 text-secondary border border-secondary border-opacity-25 px-2 py-1">${{ p.costo }}</span></td>
                     <td class="text-end pe-4">
                         <div class="actions-cell justify-content-end">
-                            <a href="/productos/editar/{{ p.idProduct }}" class="btn btn-sm btn-light text-primary" data-bs-toggle="tooltip" title="Editar">
+                            <a href="/productos/editar/{{ p.id_producto }}" class="btn btn-sm btn-light text-primary" data-bs-toggle="tooltip" title="Editar">
                                 <i class="fa-solid fa-pen"></i>
                             </a>
-                            <form action="/productos/eliminar/{{ p.idProduct }}" method="POST" class="d-inline">
+                            <form action="/productos/eliminar/{{ p.id_producto }}" method="POST" class="d-inline">
                                 <button type="submit" class="btn btn-sm btn-light text-danger" data-bs-toggle="tooltip" title="Eliminar"
                                     onclick="return confirm('¿Eliminar este producto de forma permanente?')">
                                     <i class="fa-solid fa-trash"></i>

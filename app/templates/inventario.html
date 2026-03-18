@@ -28,25 +28,25 @@
             <tbody>
                 {% for i in inventario %}
                 <tr>
-                    <td class="ps-4 fw-bold text-primary">{{ i.ProductName }}</td>
+                    <td class="ps-4 fw-bold text-primary">{{ i.nombre_producto }}</td>
                     <td>
                         <div class="d-flex flex-column">
-                            <span class="fw-medium"><i class="fa-solid fa-warehouse text-muted small me-1"></i> {{ i.WarehouseName }}</span>
-                            <small class="text-muted"><i class="fa-solid fa-location-dot small me-1"></i> {{ i.City }}, {{ i.Country }}</small>
+                            <span class="fw-medium"><i class="fa-solid fa-warehouse text-muted small me-1"></i> {{ i.nombre_almacen }}</span>
+                            <small class="text-muted"><i class="fa-solid fa-location-dot small me-1"></i> {{ i.ciudad }}, {{ i.pais }}</small>
                         </div>
                     </td>
                     <td class="text-center">
-                        <span class="badge {% if i.Stock > 10 %}bg-success{% elif i.Stock > 0 %}bg-warning{% else %}bg-danger{% endif %} rounded-pill px-3 py-2 fs-6">
-                            {{ i.Stock }} und.
+                        <span class="badge {% if i.cantidad > 10 %}bg-success{% elif i.cantidad > 0 %}bg-warning{% else %}bg-danger{% endif %} rounded-pill px-3 py-2 fs-6">
+                            {{ i.cantidad }} und.
                         </span>
                     </td>
-                    <td class="text-end fw-medium text-muted">${{ i.Price }}</td>
+                    <td class="text-end fw-medium text-muted">${{ i.precio }}</td>
                     <td class="text-end pe-4">
                         <div class="actions-cell justify-content-end">
-                            <a href="/inventario/editar/{{ i.idProduct }}/{{ i.idWarehouse }}" class="btn btn-sm btn-light text-primary" data-bs-toggle="tooltip" title="Editar Stock">
+                            <a href="/inventario/editar/{{ i.id_producto }}/{{ i.id_almacen }}" class="btn btn-sm btn-light text-primary" data-bs-toggle="tooltip" title="Editar Stock">
                                 <i class="fa-solid fa-pen"></i>
                             </a>
-                            <form action="/inventario/eliminar/{{ i.idProduct }}/{{ i.idWarehouse }}" method="POST" class="d-inline">
+                            <form action="/inventario/eliminar/{{ i.id_producto }}/{{ i.id_almacen }}" method="POST" class="d-inline">
                                 <button type="submit" class="btn btn-sm btn-light text-danger" data-bs-toggle="tooltip" title="Desasignar"
                                     onclick="return confirm('¿Eliminar esta asignación de inventario permanentemente?')">
                                     <i class="fa-solid fa-trash"></i>

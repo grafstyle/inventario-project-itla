@@ -21,30 +21,30 @@
 
                 <form action="/inventario/nuevo" method="POST">
                     <div class="mb-3">
-                        <label class="form-label" for="idProduct">Producto <span class="text-danger">*</span></label>
-                        <select class="form-select" id="idProduct" name="idProduct" required autofocus>
+                        <label class="form-label" for="id_producto">Producto <span class="text-danger">*</span></label>
+                        <select class="form-select" id="id_producto" name="id_producto" required autofocus>
                             <option value="" disabled selected>-- Seleccione un producto --</option>
                             {% for p in productos %}
-                            <option value="{{ p.idProduct }}">{{ p.Name }}</option>
+                            <option value="{{ p.id_producto }}">{{ p.nombre }}</option>
                             {% endfor %}
                         </select>
                     </div>
                     
                     <div class="mb-4">
-                        <label class="form-label" for="idWarehouse">Almacén de Destino <span class="text-danger">*</span></label>
-                        <select class="form-select" id="idWarehouse" name="idWarehouse" required>
+                        <label class="form-label" for="id_almacen">Almacén de Destino <span class="text-danger">*</span></label>
+                        <select class="form-select" id="id_almacen" name="id_almacen" required>
                             <option value="" disabled selected>-- Seleccione un almacén --</option>
                             {% for a in almacenes %}
-                            <option value="{{ a.idWarehouse }}">{{ a.Name }} - {{ a.City }}, {{ a.Country }}</option>
+                            <option value="{{ a.id_almacen }}">{{ a.nombre }} - {{ a.ciudad }}, {{ a.pais }}</option>
                             {% endfor %}
                         </select>
                     </div>
 
                     <div class="mb-4">
-                        <label class="form-label" for="stock">Cantidad (Stock Inicial) <span class="text-danger">*</span></label>
+                        <label class="form-label" for="cantidad">Cantidad (Stock Inicial) <span class="text-danger">*</span></label>
                         <div class="input-group">
                             <span class="input-group-text bg-light text-muted border-end-0"><i class="fa-solid fa-cubes"></i></span>
-                            <input type="number" class="form-control border-start-0 ps-0" id="stock" name="stock" placeholder="0" min="0" required>
+                            <input type="number" class="form-control border-start-0 ps-0" id="cantidad" name="cantidad" placeholder="0" min="0" required>
                         </div>
                     </div>
                     
