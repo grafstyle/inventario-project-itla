@@ -1,29 +1,34 @@
-from dataclasses import dataclass
-from typing import Optional
+# modelos.py
+# Define las clases que representan los datos de la aplicacion.
+# Cada clase es como una "plantilla" para guardar informacion.
 
-@dataclass
 class Producto:
-    id_producto: Optional[int]
-    nombre: str
-    descripcion: str
-    precio: float
-    costo: float
+    def __init__(self, id_producto, nombre, descripcion, precio, costo):
+        self.id_producto = id_producto
+        self.nombre = nombre
+        self.descripcion = descripcion
+        self.precio = precio
+        self.costo = costo
 
-@dataclass
+
 class Almacen:
-    id_almacen: Optional[int]
-    nombre: str
-    pais: str
-    ciudad: str
+    def __init__(self, id_almacen, nombre, pais, ciudad):
+        self.id_almacen = id_almacen
+        self.nombre = nombre
+        self.pais = pais
+        self.ciudad = ciudad
 
-@dataclass
+
 class Inventario:
-    id_producto: int
-    id_almacen: int
-    cantidad: int
-    nombre_producto: Optional[str] = None
-    nombre_almacen: Optional[str] = None
-    precio: Optional[float] = None
-    costo: Optional[float] = None
-    pais: Optional[str] = None
-    ciudad: Optional[str] = None
+    def __init__(self, id_producto, id_almacen, cantidad,
+                 nombre_producto=None, nombre_almacen=None,
+                 precio=None, costo=None, pais=None, ciudad=None):
+        self.id_producto = id_producto
+        self.id_almacen = id_almacen
+        self.cantidad = cantidad
+        self.nombre_producto = nombre_producto
+        self.nombre_almacen = nombre_almacen
+        self.precio = precio
+        self.costo = costo
+        self.pais = pais
+        self.ciudad = ciudad

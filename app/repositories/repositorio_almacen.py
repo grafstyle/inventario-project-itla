@@ -1,31 +1,62 @@
+# repositorio_almacen.py
+# Se comunica directamente con la base de datos para operaciones de Almacen (CRUD).
+
 from app.repositories.config_bd import obtener_conexion
 from app.modelos import Almacen
 
+
 def obtener_todos_almacenes():
+    """Devuelve una lista con todos los almacenes guardados en la base de datos."""
     conn = obtener_conexion()
-    rows = conn.execute("SELECT * FROM Almacen ORDER BY nombre").fetchall()
+    filas = conn.execute("SELECT * FROM Almacen ORDER BY nombre").fetchall()
     conn.close()
-    return [Almacen(**dict(r)) for r in rows]
+
+    # Convertimos cada fila de la base de datos en un objeto Almacen
+    lista = []
+    for fila in filas:
+        almacen = Almacen(
+            id_almacen=fila["id_almacen"],
+            nombre=fila["nombre"],
+            pais=fila["pais"],
+            ciudad=fila["ciudad"]
+        )
+        lista.append(almacen)
+    return lista
+
 
 def obtener_almacen(id_almacen):
+    """Busca un almacen por su ID. Devuelve el almacen o None si no existe."""
     conn = obtener_conexion()
-    row = conn.execute(
+    fila = conn.execute(
         "SELECT * FROM Almacen WHERE id_almacen=?", (id_almacen,)
     ).fetchone()
     conn.close()
-    return Almacen(**dict(row)) if row else None
 
-def crear_almacen(almacen: Almacen):
+    if fila is None:
+        return None
+
+    return Almacen(
+        id_almacen=fila["id_almacen"],
+        nombre=fila["nombre"],
+        pais=fila["pais"],
+        ciudad=fila["ciudad"]
+    )
+
+
+def crear_almacen(almacen):
+    """Inserta un nuevo almacen en la base de datos."""
     conn = obtener_conexion()
-    cur = conn.execute(
+    cursor = conn.execute(
         "INSERT INTO Almacen(nombre, pais, ciudad) VALUES(?,?,?)",
         (almacen.nombre, almacen.pais, almacen.ciudad)
     )
     conn.commit()
     conn.close()
-    return True, "Almacén creado.", cur.lastrowid
+    return True, "Almacen creado.", cursor.lastrowid
 
-def actualizar_almacen(almacen: Almacen):
+
+def actualizar_almacen(almacen):
+    """Actualiza los datos de un almacen existente."""
     conn = obtener_conexion()
     conn.execute(
         "UPDATE Almacen SET nombre=?, pais=?, ciudad=? WHERE id_almacen=?",
@@ -33,17 +64,24 @@ def actualizar_almacen(almacen: Almacen):
     )
     conn.commit()
     conn.close()
-    return True, "Almacén actualizado."
+    return True, "Almacen actualizado."
+
 
 def eliminar_almacen(id_almacen):
+    """Elimina un almacen si no tiene productos asignados."""
     conn = obtener_conexion()
-    en_uso = conn.execute(
+
+    # Verificamos si el almacen tiene productos en inventario
+    fila = conn.execute(
         "SELECT COUNT(*) FROM Inventario WHERE id_almacen=?", (id_almacen,)
-    ).fetchone()[0]
-    if en_uso > 0:
+    ).fetchone()
+    cantidad_en_uso = fila[0]
+
+    if cantidad_en_uso > 0:
         conn.close()
-        return False, "El almacén tiene productos asignados."
+        return False, "El almacen tiene productos asignados."
+
     conn.execute("DELETE FROM Almacen WHERE id_almacen=?", (id_almacen,))
     conn.commit()
     conn.close()
-    return True, "Almacén eliminado."
+    return True, "Almacen eliminado."
